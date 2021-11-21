@@ -12,7 +12,7 @@ function init() {
         });
         return data
     })
-    .done((data) => console.log('Users downloaded successful', data))
+    .done(() => console.log('Users downloaded successful'))
     .fail(() => console.log('ERROR! Users not downloaded!'))
 
     function onClickShowBtn(e) {
