@@ -1,3 +1,7 @@
 class HTTP {
-    API = 'https://jsonplaceholder.typicode.com/';
+    static #API = 'https://jsonplaceholder.typicode.com/';
+
+    get(endpoint) {
+        return $.get(HTTP.#API + endpoint)
+    }
 }

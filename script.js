@@ -6,12 +6,10 @@ function init() {
 
     ui.containerEl.click(onClickShowBtn)
 
-    $.get(http.API + ENVIRONMENT.USERS.getUsers, function(data) {
-        data.forEach(element => {
-            ui.createUser(element.name, element.id)
-        });
-        return data
-    })
+    http.get(ENVIRONMENT.USERS.getUsers)
+    .done((data) => data.forEach(element => {
+        ui.createUser(element.name, element.id)
+    }))
     .done(() => console.log('Users downloaded successful'))
     .fail(() => console.log('ERROR! Users not downloaded!'))
 
@@ -19,7 +17,8 @@ function init() {
         if ($(e.target).hasClass('show-posts-btn')) {
             ui.clearPosts()
             let userId = e.target.id;
-            $.get(http.API + ENVIRONMENT.USERS.getPosts + userId, function(data) {
+            http.get(ENVIRONMENT.USERS.getPosts + userId)
+            .done((data) => {
                 data.forEach(element => {
                     ui.createUserPosts(element.title, element.body)
                 });
